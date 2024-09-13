@@ -1,0 +1,15 @@
+<div class="group relative">
+    <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80">
+        <img src="{{ product.thumbnail }}" alt="{{ product.name }}" class="h-full w-full object-cover object-center">
+    </div>
+    <h3 class="mt-4 text-sm text-gray-700">
+        <a href="{{ product.url }}">
+            <span class="absolute inset-0"></span>
+            {{ product.name }}
+        </a>
+    </h3>
+    {% if product.is.new %}
+        <p class="mt-1 text-sm text-gray-500">New</p>
+    {% endif %}
+    <p class="mt-1 text-sm font-medium text-gray-900">{{ product.price | money }}</p>
+</div>

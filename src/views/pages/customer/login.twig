@@ -1,0 +1,67 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+    {# {% component 'header/breadcrumbs.twig' %} #}
+
+    <!-- Authentication Start -->
+    <div class="authentication-area ptb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-form">
+
+                        <h3 class="title mb-30" data-splitting="" data-aos="">Login to Oppida</h3>
+                        <form id="#authForm" action="{{ "account.login" | route }}" method="post">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group mb-20">
+                                        <label for="userName" class="form-label">Email<span class="color-red">*</span></label>
+                                        <input type="text" name="email" id="userName" class="form-control" placeholder="Enter email" required>
+                                        {% error email %}
+                                            <p>{{ message }}</p>
+                                        {% enderror %}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group mb-20">
+                                        <label for="password" class="form-label">Password<span class="color-red">*</span></label>
+                                        <div class="position-relative">
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required>
+                                            <span class="show-password-field">
+                                                <i class="show-icon"></i>
+                                            </span>
+                                            {% error password %}
+                                                <p>{{ message }}</p>
+                                            {% enderror %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="custom-checkbox mb-10 font-sm">
+                                        <input class="input-checkbox" type="checkbox" name="checkbox" id="checkbox4" value="">
+                                        <label class="form-check-label" for="checkbox4"><span> I agree with Oppida's <a href="terms-conditions.html">Terms & Conditions</a></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-10">
+                                <button class="btn btn-lg btn-primary rounded-pill w-100" type="submit" aria-label="Login">Login</button>
+                            </div>
+                            <div class="d-flex justify-content-between flex-wrap gap-2 mt-30">
+                                <div class="link font-sm">
+                                    <a href="error-404.html" title="Forgot Password">Forgot password?</a>
+                                </div>
+                                <div class="link font-sm">
+                                    Don't have an account? <a href="signup.html" title="Go Signup" target="_self">Click Here</a> to Signup
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Authentication End -->
+
+{% endblock %}

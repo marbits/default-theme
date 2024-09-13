@@ -1,0 +1,52 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://preview.colorlib.com/theme/magdesign/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="https://preview.colorlib.com/theme/magdesign/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="https://preview.colorlib.com/theme/magdesign/css/tiny-slider.css">
+    <link rel="stylesheet" href="https://preview.colorlib.com/theme/magdesign/css/glightbox.min.css">
+    <link rel="stylesheet" href="https://preview.colorlib.com/theme/magdesign/css/aos.css">
+    <link rel="stylesheet" href="https://preview.colorlib.com/theme/magdesign/css/style.css">
+    <title>MagDesign &mdash; Free Bootstrap 5 Website Template by Colorlib</title>
+    <script nonce="1b5ea3d6-3fcf-4e68-887c-4c67445bcc35">(function(w,d){!function(cM,cN,cO,cP){cM.zarazData=cM.zarazData||{};cM.zarazData.executed=[];cM.zaraz={deferred:[],listeners:[]};cM.zaraz.q=[];cM.zaraz._f=function(cQ){return function(){var cR=Array.prototype.slice.call(arguments);cM.zaraz.q.push({m:cQ,a:cR})}};for(const cS of["track","set","debug"])cM.zaraz[cS]=cM.zaraz._f(cS);cM.zaraz.init=()=>{var cT=cN.getElementsByTagName(cP)[0],cU=cN.createElement(cP),cV=cN.getElementsByTagName("title")[0];cV&&(cM.zarazData.t=cN.getElementsByTagName("title")[0].text);cM.zarazData.x=Math.random();cM.zarazData.w=cM.screen.width;cM.zarazData.h=cM.screen.height;cM.zarazData.j=cM.innerHeight;cM.zarazData.e=cM.innerWidth;cM.zarazData.l=cM.location.href;cM.zarazData.r=cN.referrer;cM.zarazData.k=cM.screen.colorDepth;cM.zarazData.n=cN.characterSet;cM.zarazData.o=(new Date).getTimezoneOffset();if(cM.dataLayer)for(const cZ of Object.entries(Object.entries(dataLayer).reduce(((c_,da)=>({...c_[1],...da[1]})))))zaraz.set(cZ[0],cZ[1],{scope:"page"});cM.zarazData.q=[];for(;cM.zaraz.q.length;){const db=cM.zaraz.q.shift();cM.zarazData.q.push(db)}cU.defer=!0;for(const dc of[localStorage,sessionStorage])Object.keys(dc||{}).filter((de=>de.startsWith("_zaraz_"))).forEach((dd=>{try{cM.zarazData["z_"+dd.slice(7)]=JSON.parse(dc.getItem(dd))}catch{cM.zarazData["z_"+dd.slice(7)]=dc.getItem(dd)}}));cU.referrerPolicy="origin";cU.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(cM.zarazData)));cT.parentNode.insertBefore(cU,cT)};["complete","interactive"].includes(cN.readyState)?zaraz.init():cM.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,0,"script");})(window,document);</script></head>
+<body>
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+            <span class="icofont-close js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+{% include "components/header/blog.twig" %}
+
+{% block content %}{% endblock %}
+
+{% include "components/footer/blog.twig" %}
+
+    <script src="https://preview.colorlib.com/theme/magdesign/js/bootstrap.bundle.min.js"></script>
+    <script src="https://preview.colorlib.com/theme/magdesign/js/tiny-slider.js"></script>
+    <script src="https://preview.colorlib.com/theme/magdesign/js/glightbox.min.js"></script>
+    <script src="https://preview.colorlib.com/theme/magdesign/js/aos.js"></script>
+    <script src="https://preview.colorlib.com/theme/magdesign/js/navbar.js"></script>
+    <script src="https://preview.colorlib.com/theme/magdesign/js/counter.js"></script>
+    <script src="https://preview.colorlib.com/theme/magdesign/js/custom.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"7758b0113c6412b5","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

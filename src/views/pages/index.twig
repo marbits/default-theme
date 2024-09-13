@@ -1,0 +1,33 @@
+{# | Variable         | Type       | Description                                                         | #}
+{# |------------------|------------|---------------------------------------------------------------------| #}
+{# | page             | object     |                                                                     | #}
+{# | page.title       | string     | *could be html                                                      | #}
+{# | page.slug        | string     | ex: "cat.show"                                                      | #}
+
+{% extends "layouts/master.twig" %}
+{% block content %}
+
+<div class="bg-white">
+
+    {% include "components/modals.twig" %}
+
+    <main>
+        <components>
+            {% for ama_general_component in page.components %}
+            {% component ama_general_component.path %}
+
+            {% for ama_general_component in ama_general_groups %}
+            {# {% component ama_general_component.path %} #}
+            {% endfor %}
+            {% endfor %}
+        </components>
+    </main>
+
+    {% include "components/footer/normal.twig" %}
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script defer src="{{ 'home.js' | asset }}"></script>
+{% endblock %}

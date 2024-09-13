@@ -1,0 +1,97 @@
+group: contact
+code: form
+name: Contact form
+
+variables:
+  slogon:
+    title: Slogon
+    type: text
+    multi-language: true
+    value_from: html
+    default:
+      en: Ready to learn?
+      ar: جاهز لتعلم؟
+
+  title:
+    title:
+      en: Title
+      ar: العنوان
+    type: textarea
+    multi-language: true
+    value_from: html
+    default:
+      en: Featured Courses
+      ar: الكورسات المميزة
+
+  button:
+      title: Button
+      type: link
+      multi-language: true
+      value_from: html
+      default:
+          en:
+              text: View all courses
+              link: /courses
+              type: page
+          ar:
+              text: عرض جميع الكورسات
+              link: /courses
+              type: page
+
+  button_bottom:
+      title: Button
+      type: link
+      multi-language: true
+      value_from: html
+      default:
+          en:
+              text: View all courses
+              link: /courses
+              type: page
+          ar:
+              text: عرض جميع الكورسات
+              link: /courses
+              type: page
+
+  image:
+    title: Image
+    type: image
+    value_from: attr
+    selector: src
+    default:
+      en: Enjoy studying with Createx Online Courses
+      ar: استمتع بالدراسة مع الدورات الإلكترونية
+
+  video_url:
+    title: Video Url
+    type: text
+    value_from: attr
+    selector: href
+    default: https://www.youtube.com/watch?v=qS1MkMt6hyw&ab_channel=Click2View
+
+  video_text:
+    title: Video text
+    type: text
+    multi-language: true
+    value_from: html
+    default:
+      en: Play video
+      ar: شاهد الفيديو
+
+loops:
+  numbers:
+    title: Numbers
+    length: 3
+
+    variables:
+      number:
+        title: Number
+        type: number
+        default: 200
+      title:
+        title: Title
+        type: text
+        multi-language: true
+        default:
+          en: Students graduated
+          ar: الطلاب الذين تخرجوا
