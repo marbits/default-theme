@@ -1,0 +1,502 @@
+version: 1.0.0
+name: Hema
+
+fields:
+  title: &title
+    title:
+      en: Title
+      ar: العنوان
+    type: text
+    default:
+      en: Hema
+      ar: هيما
+    multiple_languages: true
+
+translations:
+  features: &trans-features
+    ar: المميزات
+    en: Features
+  description: &trans-description
+    ar: الوصف
+    en: Description
+
+groups:
+  - code: header
+    title:
+      ar: الهيدر
+      en: Header
+    components:
+      - code: normal
+        title:
+          ar: الهيدر العادي
+          en: Normal header
+      - code: center-logo
+        title:
+          ar: الهيدر مع اللوجو في الوسط
+          en: Center logo header
+
+  - code: general
+    title:
+      ar: العام
+      en: General
+    components:
+      - code: columns
+        title:
+          ar: الاعمدة
+          en: Columns
+        fields:
+          - code: columns
+            type: select
+            title:
+              ar: المميزات
+              en: Features
+            options:
+              - value: 1
+                label:
+                  ar: عمود واحد
+                  en: One Column
+              - value: 2
+                label:
+                  ar: عمودين
+                  en: Two Columns
+              - value: 3
+                label:
+                  ar: ثلاثة اعمدة
+                  en: Three Columns
+              - value: 4
+                label:
+                  ar: اربعة اعمدة
+                  en: Four Columns
+
+      - code: slider
+        title:
+          ar: السلايدر
+          en: Slider
+        fields:
+          - code: slides
+            type: collection
+            title:
+              ar: السلايدر
+              en: Slider
+            prevent_select: true
+            events:
+              onSelect: |
+                $('.home-slideshow').slick('slickGoTo', index);
+                // stop autoplay
+                $('.home-slideshow').slick('slickSetOption', { autoplay: false, });
+              onBlur: |
+                $('.home-slideshow').slick('slickSetOption', { autoplay: true, });
+
+              beforeRemove: |
+                $('.home-slideshow').slick('unslick');
+              afterRemove: |
+                $('.home-slideshow').slick({
+                  dots: true,
+                  infinite: true,
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  fade: true,
+                  arrows: false,
+                  autoplay: true,
+                  autoplaySpeed: 7000,
+                  lazyLoad: 'ondemand'
+                });
+              beforeCreate: |
+                $('.home-slideshow').slick('unslick');
+              afterCreate: |
+                $('.home-slideshow').slick({
+                  dots: true,
+                  infinite: true,
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  fade: true,
+                  arrows: false,
+                  autoplay: true,
+                  autoplaySpeed: 7000,
+                  lazyLoad: 'ondemand'
+                });
+
+              onRemove: "console.log('onRemove')"
+            fields:
+              - code: title
+                default:
+                  en: Title
+                  ar: العنوان
+                <<: *title
+              - code: top_title
+                default:
+                  en: Title
+                  ar: العنوان
+                <<: *title
+              - code: description
+                title: *trans-description
+                type: textarea
+                default: *trans-description
+                multiple_languages: true
+              - code: image
+                title:
+                  ar: الصورة
+                  en: Image
+                type: image
+                value_from: attribute
+                attribute: src
+                prevent_select: true
+              - code: image_place
+                type: alignment
+                value_from: attribute
+                attribute: data-image-place
+                events:
+                  onChange: |
+                      function getElementByXPath(xpath) {
+                        return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                      }
+                      var matchedElement = getElementByXPath(node);
+
+                      if (matchedElement) {
+                        $(matchedElement).removeClass('middle-center middle-right middle-left')
+                        $(matchedElement).addClass(value)
+                      }
+                title:
+                  ar: مكان الصورة
+                  en: Image Place
+                options:
+                  - type: left
+                    value: middle-left
+                  - type: center
+                    value: middle-center
+                  - type: right
+                    value: middle-right
+
+              - code: buttons
+                title:
+                  ar: الازرار
+                  en: Buttons
+                type: collection
+                fields:
+                  - code: btn_type
+                    title:
+                      ar: نوع الزر
+                      en: Button Type
+                    type: select
+                    options:
+                      - value: primary
+                        label:
+                          ar: اساسي
+                          en: Primary
+                      - value: secondary
+                        label:
+                          ar: ثانوي
+                          en: Secondary
+                      - value: tertiary
+                        label:
+                          ar: ثالثي
+                          en: Tertiary
+                    default: primary
+                    value_from: attribute
+                    attribute: value
+                  - code: link
+                    title:
+                      ar: الرابط
+                      en: Link
+                    type: link
+                    multiple_languages: true
+                    default:
+                      url: /
+                      target: _self
+            default:
+              - title:
+                  ar: اجعل حياتك اسهل
+                  en: Making your life easier
+                top_title:
+                  ar: العنوان العلوي
+                  en: Top Title
+                description:
+                  ar: اجعل حياتك اسهل مع منتجاتنا
+                  en: Making your life easier with our products
+                image: https://www.annimexweb.com/items/hema/assets/images/slideshow/demo1-banner1.jpg
+                image_place: middle-left
+                buttons:
+                  - btn_type: primary
+                    link:
+                      url: /
+                      target: _self
+                      title:
+                        ar: الزر الاول
+                        en: First Button
+                  - btn_type: secondary
+                    link:
+                      url: https://google.com
+                      target: _blank
+                      title:
+                        ar: الزر الثاني
+                        en: Second Button
+              - title:
+                  ar: العنوان
+                  en: Title
+                image_place: middle-left
+                top_title:
+                  ar: العنوان العلوي
+                  en: Top Title
+                description:
+                  ar: الوصف
+                  en: Description
+                buttons:
+                  - btn_type: primary
+                    link:
+                      url: /
+                      target: _self
+                  - btn_type: secondary
+                    link:
+                      url: /
+                      target: _self
+              - title:
+                  ar: العنوان
+                  en: Title
+                top_title:
+                  ar: العنوان العلوي
+                  en: Top Title
+                description:
+                  ar: الوصف
+                  en: Description
+                buttons:
+                  - btn_type: primary
+                    link:
+                      url: /
+                      target: _self
+                  - btn_type: secondary
+                    link:
+                      url: /
+                      target: _self
+              - title:
+                  ar: العنوان
+                  en: Title
+                top_title:
+                  ar: العنوان العلوي
+                  en: Top Title
+                description:
+                  ar: الوصف
+                  en: Description
+                image_place: middle-left
+                buttons:
+                  - btn_type: primary
+                    link:
+                      url: /
+                      target: _self
+                  - btn_type: secondary
+                    link:
+                      url: /
+                      target: _self
+              - title:
+                  ar: العنوان
+                  en: Title
+                image_place: middle-left
+                top_title:
+                  ar: العنوان العلوي
+                  en: Top Title
+                description:
+                  ar: الوصف
+                  en: Description
+                buttons:
+                  - btn_type: primary
+                    link:
+                      url: /
+                      target: _self
+                  - btn_type: secondary
+                    link:
+                      url: /
+
+      - code: features
+        title:  *trans-features
+        fields:
+          # - code: title
+          #   <<: *title
+          #   default: *trans-features
+          # - code: description
+          #   <<: *title
+          #   type: textarea
+          #   default: *trans-features
+          # - code: test
+          #   <<: *title
+          #   type: textarea
+          #   default: *trans-features
+
+          - code: features
+            type: collection
+            title: *trans-features
+            fields:
+              - code: title
+                default:
+                  en: Title
+                  ar: العنوان
+                <<: *title
+              - code: description
+                title: *trans-description
+                type: textarea
+                default: *trans-description
+                multiple_languages: true
+              - code: icon
+                title:
+                  ar: الايقونة
+                  en: Icon
+                type: icon
+                default: icon anm anm-phone-call-l
+
+            default:
+              - title:
+                  ar: اتصل بنا 24/7 ساعة في اليوم
+                  en: CALL US ANY TIME
+                description:
+                  ar: اتصل بنا 24/7 ساعة في اليوم
+                  en: Contact us 24/7 hours a day
+                icon: icon anm anm-phone-call-l
+              - title:
+                  ar: اختر من اي متجر
+                  en: PICKUP AT ANY STORE
+                description:
+                  ar: شحن مجاني للطلبات التي تزيد عن 65 دولار
+                  en: Free shipping on orders over $65
+                icon: icon anm anm-truck-l
+              - title:
+                  ar: الدفع الامن
+                  en: SECURED PAYMENT
+                description:
+                  ar: نقبل جميع بطاقات الائتمان الرئيسية
+                  en: We accept all major credit cards
+                icon: icon anm anm-credit-card-l
+              - title:
+                  ar: الارجاع مجانا
+                  en: FREE RETURNS
+                description:
+                  ar: سياسة ارجاع مجانية لمدة 30 يوم
+                  en: 30-days free return policy
+                icon: icon anm anm-redo-l
+
+      - code: banner-collection
+        title:
+          ar: مجموعة البانر
+          en: Banner Collection
+        fields:
+          - code: banners
+            type: collection
+            title: *trans-features
+            prevent_select: true
+            default:
+              - title:
+                  ar: العنوان
+                  en: Title
+                description:
+                  ar: الوصف
+                  en: Description
+                btn_text:
+                  ar: الزر
+                  en: Button
+                image:
+                  src: /storage/uploads/2021/04/1619458103.png
+                link:
+                  url: /
+                  target: _self
+                image_place: middle-right
+              - title:
+                  ar: العنوان
+                  en: Title
+                description:
+                  ar: الوصف
+                  en: Description
+                btn_text:
+                  ar: الزر
+                  en: Button
+                image:
+                  src: /storage/uploads/2021/04/1619458103.png
+                link:
+                  url: /
+                  target: _self
+                image_place: middle-left
+            fields:
+              - code: title
+                <<: *title
+              - code: description
+                title: *trans-description
+                type: textarea
+                default: *trans-description
+                multiple_languages: true
+              - code: image_place
+                type: enum
+                value_from: attribute
+                attribute: data-image-place
+                events:
+                  onChange: |
+                      function getElementByXPath(xpath) {
+                        return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                      }
+                      var matchedElement = getElementByXPath(node);
+
+                      if (matchedElement) {
+                        $(matchedElement).removeClass('middle-right middle-left')
+                        $(matchedElement).addClass(value)
+                      } else {
+                        console.log("No matching element found.");
+                      }
+                      // remove all classes
+                      // var selector = node.replace(/\/\/\*/g, ' ')
+                      // $(selector).removeClass('middle-right middle-left')
+                      // $(selector).addClass(value)
+                title:
+                  ar: الوسط اليمين
+                  en: Middle Right
+                options:
+                  - value: middle-right
+                    label:
+                      ar: يمين
+                      en: Right
+                  - value: middle-left
+                    label:
+                      ar: يسار
+                      en: Left
+              - code: btn_text
+                title: *trans-description
+                type: text
+                default: *trans-description
+                multiple_languages: true
+              - code: image
+                title:
+                  ar: الصورة
+                  en: Image
+                type: image
+                value_from: attribute
+                attribute: src
+                prevent_select: true
+              - code: link
+                prevent_select: true
+                title:
+                  ar: الرابط
+                  en: Link
+                type: link
+
+      - code: product-card
+        title:
+          ar: بطاقة المنتج
+          en: Product Card
+        fields:
+          - code: title
+            <<: *title
+            multiple_languages: true
+            default:
+              en: Title 2
+              ar: العنوان
+          - code: description
+            title: *trans-description
+            type: editor
+            value_from: html
+            default: *trans-description
+            multiple_languages: true
+
+  - code: footer
+    title:
+      ar: الفوتر
+      en: Footer
+    components:
+      - code: normal
+        title:
+          ar: الفوتر العادي
+          en: Normal footer
+      
